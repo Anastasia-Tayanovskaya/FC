@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <template id="SingleArticle">
+		<article class="news">
+			<a class="article-link" href="" target="_blank">
+				<header>
+					<h2 class="article-title"></h2>
+				</header>
+				<p>Written by <span class="article-author"></span></p>
+				<img alt="" src=""/>
+				<span class="article-published-date"></span>
+				<p class="article-description"></p>
+			</a>
+		</article>
+	</template>
+</head>
+<body>
+
+	<div class="wrapper">
+		<nav><ul class="source-list"></ul></nav>
+		<section class="news-list"></section>
+	</div>
+
+	<footer>Powered By <a href="https://newsapi.org/">NewsAPI.org</a></footer>
+ 	
+</body>
+
+<script src="js/Article.js"></script>
+<script src="js/Source.js"></script>
+<script src="js/requester.js"></script>
+<script src="app.js"></script>
+</html>
