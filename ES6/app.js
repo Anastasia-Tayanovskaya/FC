@@ -14,7 +14,7 @@
 			
 
 	function updateArticleUrl(){
-		return `https:\/\/newsapi.org\/v1\/articles?source=${source}&apiKey=${API_KEY}`;
+		return `https:\/\/newsapi.org\/v1\/articles?source=${source}&apiKey=${API_KEY}`; // Template literals
 	}
 
 	function onSourcesLoaded(sources) {

@@ -1,6 +1,6 @@
 class Source {
 	constructor (sourceOptions) {
-		Object.assign(this, sourceOptions);
+		Object.assign(this, sourceOptions); // WD: Object.assign
 	}
 
 	createDOMElement () {
