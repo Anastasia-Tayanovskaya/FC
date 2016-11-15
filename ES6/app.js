@@ -6,21 +6,21 @@
 	const API_KEY = '2fabd738608345058dedf508d3c9b9ab';
 
 
-	var newsListElement = document.querySelector('.news-list'),
+	var newsListElement = document.querySelector('.news-list'), // NOTE: please use let or const 
 		sourceListElement = document.querySelector('.source-list'),
 		source = SOURCE_BY_DEFAULT,
 		articlesUrl = updateArticleUrl(),
 		articleTmplContent = document.querySelector('#SingleArticle').content;
 			
 
-	function updateArticleUrl(){
-		return `https:\/\/newsapi.org\/v1\/articles?source=${source}&apiKey=${API_KEY}`; // Template literals
+	function updateArticleUrl(){ // NOTE: could be defined as arrow function ( const updateArticleUrl = () => { ... })
+		return `https:\/\/newsapi.org\/v1\/articles?source=${source}&apiKey=${API_KEY}`; // WD: Template literals
 	}
 
 	function onSourcesLoaded(sources) {
 		var documentFragment = document.createDocumentFragment();
 
-		for (let source of sources) {
+		for (let source of sources) { // ADD: why don't you use array methods (map, forEach)   
 			let sourceObj = new Source(source);
 			sourceObj.createDOMElement();
 			documentFragment.appendChild(sourceObj.element);
@@ -31,8 +31,8 @@
 		}
 
 		sourceListElement.appendChild(documentFragment);
-		sourceListElement.addEventListener('click', event => {
-			var target = event.target;
+		sourceListElement.addEventListener('click', event => { // WD: Arrow func
+			var target = event.target; // NOTE: let or const
 			if (target.tagName.toLowerCase() === 'li') {
 				let activeListElement = sourceListElement.querySelector('li.active');
 				activeListElement.classList.remove('active');

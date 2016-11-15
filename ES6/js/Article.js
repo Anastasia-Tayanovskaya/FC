@@ -1,4 +1,4 @@
-class Article {
+class Article { // WD: class
 	constructor (articleOptions) {
 		Object.assign(this, articleOptions);
 	}

@@ -4,6 +4,7 @@ class Source {
 	}
 
 	createDOMElement () {
+		// ADD: not bad place for demonsatrationg destructuring. Yes, it's not the ideal place for it, but it could be used. 
 		this.element = document.createElement('li');
 		this.element.textContent = this.name;
 

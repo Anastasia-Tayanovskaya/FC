@@ -1,3 +1,4 @@
+// ADD: requester also could be a class
 let Requester = (function(){  // NOTE: why let? should be const. 
 	'use strict'; 
 
@@ -9,7 +10,7 @@ let Requester = (function(){  // NOTE: why let? should be const.
 			// so in app js you will have :
 			// Requester.getNewsList(articlesUrl).then(onNewsListLoaded, onNewsListError);
 			// what gives you a bit more flexebility
-			fetch(request, init)
+			fetch(request, init) 
 				.then(response => response.json())
 				.then(response => {
 					if (response.status === 'error') {
@@ -27,7 +28,7 @@ let Requester = (function(){  // NOTE: why let? should be const.
 		getSourceList(sourceUrl, callback) {
 			var request = new Request(sourceUrl);
 		
-			fetch(request, init)
+			fetch(request, init) // WD: fetch
 				.then(response => response.json())
 				.then(response => {
 					callback(response.sources);
