@@ -4,11 +4,12 @@ class Source {
 	}
 
 	createDOMElement () {
+		let {id: sourceId, name: sourceName, urlsToLogos: {small: sourceImageSmall}} = this;
+		
 		this.element = document.createElement('li');
-		this.element.textContent = this.name;
-
-		this.element.dataset.sourceId =  this.id;
-		this.element.dataset.sourceName =  this.name;
-		this.element.dataset.sourceImageSmall = this.urlsToLogos.small;
+		this.element.textContent = sourceName;
+		this.element.dataset.sourceId =  sourceId;
+		this.element.dataset.sourceName =  sourceName;
+		this.element.dataset.sourceImageSmall = sourceImageSmall;
 	}
 }

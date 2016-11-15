@@ -4,13 +4,12 @@ class Article {
 	}
 
 	insertDataIntoTemplate (tmplContent) {
-		var articleLink = tmplContent.querySelector('.article-link'),
+		let articleLink = tmplContent.querySelector('.article-link'),
 			titleElement = tmplContent.querySelector('h2'),
 			image = tmplContent.querySelector('img'),
 			descriptionElement = tmplContent.querySelector('.article-description'),
 			publishedDateElement = tmplContent.querySelector('.article-published-date'),
 			authorElement = tmplContent.querySelector('.article-author');
-
 
 		articleLink.setAttribute('href', this.url);
 		titleElement.textContent = this.title;

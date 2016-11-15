@@ -3,7 +3,6 @@ body {
 	font: 14px Arial, Verdana, sans-serif;
 }
 
-
 a {
 	color: rgba(0,0,0,.8);
 	text-decoration: none;	
@@ -92,6 +91,10 @@ footer {
 		width: auto;
 		flex-direction: column;
 	}
+	
+	footer {
+		width: auto;
+	}
 
 	.wrapper nav {
 		margin-right: 0;
@@ -107,6 +110,10 @@ footer {
 		border-right: 1px dotted #555;
     	box-sizing: border-box;
     	flex: 1 1 auto;
+	}
+	
+	.news-list {
+		flex-basis: auto;
 	}
 }
 

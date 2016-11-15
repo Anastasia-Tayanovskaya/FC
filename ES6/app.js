@@ -15,7 +15,8 @@
 		source = SOURCE_BY_DEFAULT,
 		articlesUrl = updateArticleUrl(),
 		articleTmplContent = document.querySelector('#SingleArticle').content,
-		navButtonElement = document.querySelector('.nav-button');
+		navButtonElement = document.querySelector('.nav-button'),
+		requester = new Requester();
 	
 
 	navButtonElement.addEventListener('click', (event) => {
@@ -23,8 +24,9 @@
 		sourceListElement.classList.toggle('visible');
 	})	
 
-	function onSourcesLoaded(sources) {
-		let documentFragment = document.createDocumentFragment();
+	function onSourcesLoaded(response) {
+		let documentFragment = document.createDocumentFragment(),
+			sources = response.sources;
 
 		sources.forEach(source => {
 			let sourceObj = new Source(source);
@@ -46,15 +48,16 @@
 				target.classList.add('active');
 				source = target.dataset.sourceId;
 				articlesUrl = updateArticleUrl();
-				Requester.getNewsList(articlesUrl, onNewsListLoaded, onNewsListError);
+				requester.getResponseFromUrl(articlesUrl).then(onNewsListLoaded, onError);
 
 				this.classList.remove('visible');
 			}
 		})
 	}
 
-	function onNewsListLoaded(articles) {
-		let	documentFragment = document.createDocumentFragment();
+	function onNewsListLoaded(response) {
+		let	documentFragment = document.createDocumentFragment(),
+			articles = response.articles;
 
 		newsListElement.innerHTML = '';
 
@@ -67,12 +70,15 @@
 		newsListElement.appendChild(documentFragment);
 	}
 
-	function onNewsListError(message) {
+	function onError(message) {
 		console.log(message);
 	}
 
-	Requester.getSourceList(SOURCE_URL, onSourcesLoaded);
-	Requester.getNewsList(articlesUrl, onNewsListLoaded, onNewsListError);
+	/* Requester.getSourceList(SOURCE_URL, onSourcesLoaded);
+	Requester.getNewsList(articlesUrl, onNewsListLoaded, onNewsListError); */
+	
+	requester.getResponseFromUrl(SOURCE_URL).then(onSourcesLoaded, onError);
+	requester.getResponseFromUrl(articlesUrl).then(onNewsListLoaded, onError);
 })()
 
 
