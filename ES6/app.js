@@ -9,7 +9,6 @@
 		return `https:\/\/newsapi.org\/v1\/articles?source=${source}&apiKey=${API_KEY}`;
 	}
 
-
 	let newsListElement = document.querySelector('.news-list'),
 		sourceListElement = document.querySelector('.source-list'),
 		source = SOURCE_BY_DEFAULT,
@@ -17,9 +16,8 @@
 		articleTmplContent = document.querySelector('#SingleArticle').content,
 		navButtonElement = document.querySelector('.nav-button'),
 		requester = new Requester();
-	
 
-	navButtonElement.addEventListener('click', (event) => {
+	navButtonElement.addEventListener('click', event => {
 		event.preventDefault();
 		sourceListElement.classList.toggle('visible');
 	})	
@@ -73,9 +71,6 @@
 	function onError(message) {
 		console.log(message);
 	}
-
-	/* Requester.getSourceList(SOURCE_URL, onSourcesLoaded);
-	Requester.getNewsList(articlesUrl, onNewsListLoaded, onNewsListError); */
 	
 	requester.getResponseFromUrl(SOURCE_URL).then(onSourcesLoaded, onError);
 	requester.getResponseFromUrl(articlesUrl).then(onNewsListLoaded, onError);
