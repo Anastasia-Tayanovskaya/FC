@@ -33,10 +33,15 @@ li {
     margin-right: 15px;
 }
 
+.nav-button {
+	display: none;
+}
+
 
 .source-list {
 	padding: 0;
 	margin: 0;
+	background: #fff;
 }
 
 .source-list > li {
@@ -80,4 +85,81 @@ footer {
 	height: 50px;
 	margin: 0 auto;
 	width: 860px;
+}
+
+@media only screen and (max-width : 860px) {
+	.wrapper {
+		width: auto;
+		flex-direction: column;
+	}
+
+	.wrapper nav {
+		margin-right: 0;
+		margin-bottom: 15px;
+	}
+
+	.source-list {
+		display: flex;	
+		flex-wrap: wrap;
+	}
+
+	.source-list > li {
+		border-right: 1px dotted #555;
+    	box-sizing: border-box;
+    	flex: 1 1 auto;
+	}
+}
+
+ @media only screen and (max-width : 468px) {
+	.wrapper nav {
+		margin-right: 0;
+		margin-bottom: 15px;
+		flex-basis: 40px;
+		position: relative;
+	}
+
+	.source-list {
+		display: none;
+		position: absolute;
+		top: 40px;
+    	left: 0;
+    	border-bottom: 2px solid #777;
+    	box-shadow: 0 1px 4px #555;
+	}
+
+	.source-list.visible {
+		display: flex;
+	}
+
+	.nav-button {
+		display: inline-block;
+		width: 35px;
+		height: 20px;
+	}
+
+	.button-nav-inner {
+		position: relative;
+		width: 30px;
+		height: 3px;
+		border-radius: 7px;
+		background: #555;
+		display: inline-block;
+	}
+
+	.button-nav-inner:before, .button-nav-inner:after {
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 3px;
+		border-radius: 7px;
+		background: #555;
+	}
+
+	.button-nav-inner:before{
+		top: -6px;
+	} 
+
+	.button-nav-inner:after {
+		top: 6px;
+	}
 }
