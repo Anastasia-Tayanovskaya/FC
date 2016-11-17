@@ -1,0 +1,13 @@
+{
+	"name": "fc-babel",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"build": "babel js -d lib"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"babel-cli": "^6.18.0",
+		"babel-preset-latest": "^6.16.0"
+	}
+}
