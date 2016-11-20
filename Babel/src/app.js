@@ -1,5 +1,5 @@
 (function(){
-	'use strict';
+'use strict';
 
 	const SOURCE_URL = 'https://newsapi.org/v1/sources';
 	const SOURCE_BY_DEFAULT = 'bbc-news';
@@ -23,11 +23,11 @@
 	})	
 
 	function onSourcesLoaded(response) {
-		let documentFragment = document.createDocumentFragment(),
+		const documentFragment = document.createDocumentFragment(),
 			sources = response.sources;
 
 		sources.forEach(source => {
-			let sourceObj = new Source(source);
+			const sourceObj = new Source(source);
 			sourceObj.createDOMElement();
 			documentFragment.appendChild(sourceObj.element);
 
@@ -38,13 +38,13 @@
 
 		sourceListElement.appendChild(documentFragment);
 		sourceListElement.addEventListener('click', function(event) {
-			let target = event.target;
+			const target = event.target;
 			if (target.tagName.toLowerCase() === 'li') {
-				let activeListElement = sourceListElement.querySelector('li.active');
+				const activeListElement = sourceListElement.querySelector('li.active');
 				activeListElement.classList.remove('active');
 
 				target.classList.add('active');
-				source = target.dataset.sourceId;
+				source = target.getAttribute('data-source-id');
 				articlesUrl = updateArticleUrl();
 				requester.getResponseFromUrl(articlesUrl).then(onNewsListLoaded, onError);
 
@@ -54,14 +54,14 @@
 	}
 
 	function onNewsListLoaded(response) {
-		let	documentFragment = document.createDocumentFragment(),
+		const	documentFragment = document.createDocumentFragment(),
 			articles = response.articles;
 
 		newsListElement.innerHTML = '';
 
 		articles.forEach(article => {
 			let newsArticle = new Article(article);
-			let articleWithData = newsArticle.insertDataIntoTemplate(articleTmplContent);
+			let articleWithData = newsArticle.insertData();
 			documentFragment.appendChild(articleWithData);
 		})
 

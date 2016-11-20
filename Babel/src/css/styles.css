@@ -13,9 +13,10 @@ li {
 }
 
 .wrapper {
-	width: 860px;
+	width: 875px; 
 	margin: 10px auto;
 	box-sizing: border-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
@@ -28,6 +29,7 @@ li {
 }
 
 .wrapper nav {
+	-ms-flex-preferred-size: 250px;
 	flex-basis: 250px;
     margin-right: 15px;
 }
@@ -41,6 +43,7 @@ li {
 	padding: 0;
 	margin: 0;
 	background: #fff;
+	box-sizing: border-box;
 }
 
 .source-list > li {
@@ -60,7 +63,9 @@ li {
 }
 
 .news-list {
+	-ms-flex-preferred-size: 610px;
 	flex-basis: 610px;
+	box-sizing: border-box;
 }
 
 .news-list img {
@@ -89,6 +94,7 @@ footer {
 @media only screen and (max-width : 860px) {
 	.wrapper {
 		width: auto;
+		-ms-flex-direction: column;
 		flex-direction: column;
 	}
 	
@@ -99,20 +105,25 @@ footer {
 	.wrapper nav {
 		margin-right: 0;
 		margin-bottom: 15px;
+		-ms-flex-preferred-size: auto;
 	}
 
 	.source-list {
-		display: flex;	
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 	}
 
 	.source-list > li {
 		border-right: 1px dotted #555;
     	box-sizing: border-box;
+		-ms-flex: 1 1 auto;
     	flex: 1 1 auto;
 	}
 	
 	.news-list {
+		-ms-flex-preferred-size: auto;
 		flex-basis: auto;
 	}
 }
@@ -121,6 +132,7 @@ footer {
 	.wrapper nav {
 		margin-right: 0;
 		margin-bottom: 15px;
+		-ms-flex-preferred-size: 40px;
 		flex-basis: 40px;
 		position: relative;
 	}
@@ -130,11 +142,13 @@ footer {
 		position: absolute;
 		top: 40px;
     	left: 0;
+		width: 100%;
     	border-bottom: 2px solid #777;
     	box-shadow: 0 1px 4px #555;
 	}
 
 	.source-list.visible {
+		display: -ms-flexbox;
 		display: flex;
 	}
 

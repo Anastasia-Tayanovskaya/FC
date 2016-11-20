@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="src/css/styles.css">
 
-  <template id="SingleArticle">
+  <script type="text/javascript" src="node_modules/babel-polyfill/dist/polyfill.js"></script>
+  <script type="text/javascript" src="node_modules/whatwg-fetch/fetch.js"></script>
+  <script type="text/javascript" src="node_modules/classlist-polyfill/src/index.js"></script>
+
+	<template id="SingleArticle">
 		<article class="news">
 			<a class="article-link" href="" target="_blank">
 				<header>
@@ -35,8 +39,8 @@
  	
 </body>
 
-<script src="js/Article.js"></script>
-<script src="js/Source.js"></script>
-<script src="js/Requester.js"></script>
-<script src="app.js"></script>
+<script type="text/javascript" src="dist/js/Article.js"></script>
+<script type="text/javascript" src="dist/js/Source.js"></script>
+<script type="text/javascript" src="dist/js/Requester.js"></script>
+<script type="text/javascript" src="dist/app.js"></script>
 </html>

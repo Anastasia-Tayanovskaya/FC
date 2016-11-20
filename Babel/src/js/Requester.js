@@ -4,8 +4,8 @@ class Requester  {
 	}
 	
 	getResponseFromUrl(sourceUrl) {
-		let request = new Request(sourceUrl);
+		const request = new Request(sourceUrl);
 		return fetch(request, this.init)
-					.then(response => response.json());
+				.then(response => response.json());
 	}
 }
