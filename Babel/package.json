@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "fc-babel",
   "version": "1.0.0",
   "description": "",
@@ -6,6 +6,7 @@
     "build": "babel src -d dist"
   },
   "dependencies": {
+    "classlist-polyfill": "^1.0.3",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
