@@ -1,3 +1,7 @@
+/*
+The plugin changes true values to false values in case if it is variable assignment or variable declaration
+*/
+
 export default function(babel) {
 	const { types: t } = babel;
   
