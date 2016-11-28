@@ -8,6 +8,14 @@ module.exports = {
 		path: './dist',
 		filename: 'app.bundle.js'
 	},
+	resolveLoader: {
+		alias: {
+			'json-custom-loader': path.join(__dirname, '/../loader/json-custom-loader')
+		}
+	},
+	resolve: {
+		extensions: ['', '.js', '.styl', '.json']
+	},
 	module: {
 		loaders: [{
 			test: /\.js$/,
@@ -22,17 +30,12 @@ module.exports = {
 		},
 		{
 			test: /\.png$/,
-			loader: 'url?limit=10000'
-		}],
-		resolve: {
-			extensions: ['', '.js', '.styl', '.json'],
-			modulesDirectories: ['loader', 'web_modules', 'bower_components', 'node_modules']
+			loader: 'url?limit=15000'
 		},
-		resolveLoader: {
-			alias: {
-				'json-custom-loader': path.join(__dirname, '/../loader/json-custom-loader')
-			}
-		}
+		{
+			test: /\.json$/,
+			loader: 'json-custom-loader'
+		}]
 	},
 	
 	plugins: [

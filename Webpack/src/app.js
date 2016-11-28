@@ -5,22 +5,29 @@ import templatePolyfill from 'template-polyfill';
 // Import styles
 import './styl/styles.styl';
 
+import './text.json';
+
 	const SOURCE_URL = 'https://newsapi.org/v1/sources';
 	const SOURCE_BY_DEFAULT = 'bbc-news';
 	const API_KEY = '2fabd738608345058dedf508d3c9b9ab';
 	
 	templatePolyfill();
 	
+	const worldImg = document.createElement('img');
+	worldImg.src = require('./assets/world.png');
+	
+	document.body.insertBefore(worldImg,document.body.childNodes[0]);
+	
 	document.querySelector('button').addEventListener('click', () => {
-		require.ensure([], () => {
-		
+		require(['./js/Article', './js/Source', './js/Requester'], function(articleModule, sourceModule, requesterModule) {
+			
 			const updateArticleUrl = () => {
 				return `https:\/\/newsapi.org\/v1\/articles?source=${newsSource}&apiKey=${API_KEY}`;
 			}
 		
-			const Article = require('./js/Article').Article;
-			const Requester = require('./js/Requester').Requester;
-			const Source  = require('./js/Source').Source;
+			const Article = articleModule.Article;
+			const Requester = requesterModule.Requester;
+			const Source  = sourceModule.Source;
 			
 			
 			const wrapper = document.querySelector('.wrapper'),
@@ -97,6 +104,5 @@ import './styl/styles.styl';
 				wrapper.classList.remove('invisible');
 				document.querySelector('.get-news-btn').classList.add('invisible');
 			});
-
 		});
-	});
+	})
