@@ -12,28 +12,33 @@ li {
 	list-style-type: none;
 }
 
-.wrapper.invisible, .get-news-btn.invisible
+.wrapper.invisible, .controls.invisible
 	display: none
 
 .get-news-btn
-	margin: 10px auto
-	display: block
 	cursor: pointer
 	background: #7fffd4
 	border: 1px solid #555
 	border-radius: 7px
 	box-shadow: 2px 2px 1px 0 #333
-	padding: 20px 30px
+	padding: 15px 20px
 	font-weight: bold
+	
+.source-list .star 
+	background-image: url('../assets/star.png')
+	background-repeat: no-repeat
+	background-position: 5px 50%
 	
 	
 .wrapper {
-	width: 875px; 
-	margin: 10px auto;
 	box-sizing: border-box;
 	display: -ms-flexbox;
 	display: flex;
 }
+
+.wrapper, .controls 
+	width: 875px
+	margin: 10px auto
 
 .wrapper nav, .news, footer {
 	background: #fff;
@@ -62,7 +67,7 @@ li {
 }
 
 .source-list > li {
-	padding: 7px;
+	padding: 7px 7px 7px 30px;
     border-bottom: 1px dotted #555;
 }
 
@@ -103,7 +108,7 @@ li {
 footer {
 	height: 50px;
 	margin: 0 auto;
-	width: 860px;
+	width: 875px;
 }
 
 @media only screen and (max-width : 860px) {
@@ -113,7 +118,7 @@ footer {
 		flex-direction: column;
 	}
 	
-	footer {
+	footer, .controls {
 		width: auto;
 	}
 

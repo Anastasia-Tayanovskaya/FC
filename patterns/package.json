@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "npm run clean:dist && webpack --config config/webpack.dev.js --progress --colors",
     "build:prod": "npm run clean:dist && webpack --config config/webpack.prod.js --progress --colors",
-    "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --colors --profile --watch",
+    "server:dev": "webpack-dev-server --inline --hot --config config/webpack.dev.js --progress --colors --watch",
     "build": "npm run build:dev",
     "clean:dist": "rimraf dist"
   },

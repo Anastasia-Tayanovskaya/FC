@@ -6,6 +6,6 @@ export class DecoratedSource {
 	}
 	
 	setActive () {
-		this.element.style.background = '#b0afa1';
+		this.element.classList.add('star');
 	}
 }

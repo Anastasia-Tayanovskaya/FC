@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="dist/app.css">
+  <link rel="stylesheet" href="app.css">
   <script type="text/javascript" src="polyfill/html5-dataset.js"></script>
   
   <template id="SingleArticle">
@@ -23,20 +23,22 @@
 	</template>
 </head>
 <body>
-	<label for="newsCategory">Select News Category:</label>
-	<select id="newsCategory">
-		<option value="default" selected>Default</option>
-		<option value="general">General</option>
-		<option value="sport">Sport</option>
-		<option value="business">Business</option>
-		<option value="entertainment">Entertainment</option>
-		<option value="technology">Technology</option>
-		<option value="music">Music</option>
-		<option value="science-and-nature">Science and Nature</option>
-		<option value="gaming">Gaming</option>
-	</select>
+	<div class="controls">
+		<label for="newsCategory">Select Top Category (marked with star):</label>
+		<select id="newsCategory">
+			<option value="default" selected>Default</option>
+			<option value="general">General</option>
+			<option value="sport">Sport</option>
+			<option value="business">Business</option>
+			<option value="entertainment">Entertainment</option>
+			<option value="technology">Technology</option>
+			<option value="music">Music</option>
+			<option value="science-and-nature">Science and Nature</option>
+			<option value="gaming">Gaming</option>
+		</select>
 
-	<button type="button" class="get-news-btn">Get News</button>
+		<button type="button" class="get-news-btn">Get News</button>
+	</div>
 
 	<div class="wrapper invisible">
 		<nav>
@@ -50,5 +52,5 @@
  	
 </body>
 
-<script type="text/javascript" src="dist/app.bundle.js"></script>
+<script type="text/javascript" src="app.bundle.js"></script>
 </html>

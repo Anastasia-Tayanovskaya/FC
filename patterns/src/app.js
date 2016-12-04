@@ -3,24 +3,54 @@ import 'classlist-polyfill';
 import templatePolyfill from 'template-polyfill';
 import StrategyFactory from './js/strategies/StrategyFactory';
 
+import { loadData, toggleListVisibility } from './js/actions';
+import { store as state } from './js/store';
+
 // Import styles
 import './styl/styles.styl';
 
-import './text.json';
-
-	const SOURCE_URL = 'https://newsapi.org/v1/sources';
-	const SOURCE_BY_DEFAULT = 'bbc-news';
-	const API_KEY = '2fabd738608345058dedf508d3c9b9ab';
+	const SOURCE_URL = 'https://newsapi.org/v1/sources',
+		  SOURCE_BY_DEFAULT = 'bbc-news',
+		  API_KEY = '2fabd738608345058dedf508d3c9b9ab',
+		  worldImg = document.createElement('img'),
+		  sourceListElement = document.querySelector('.source-list'),
+		  wrapper = document.querySelector('.wrapper'),
+		  newsListElement = document.querySelector('.news-list'),
+		  articleTmplContent = document.querySelector('#SingleArticle').content,
+		  navButtonElement = document.querySelector('.nav-button');
 	
 	templatePolyfill();
 	
-	const worldImg = document.createElement('img');
+	//Insert world image
 	worldImg.src = require('./assets/world.png');
-	
 	document.body.insertBefore(worldImg,document.body.childNodes[0]);
 	
-	document.querySelector('button').addEventListener('click', () => {
-		require(['./js/Article', './js/Source', './js/Requester', './js/DecoratedSource'], function(articleModule, sourceModule, requesterModule, decoratedSourceModule) {
+	document.querySelector('button').addEventListener('click', (e) => {
+		document.dispatchEvent(new CustomEvent('action', { detail: loadData({
+			current: SOURCE_BY_DEFAULT,
+			callback: 'render'
+		})}));
+	});
+	
+	navButtonElement.addEventListener('click', (e) => {
+		document.dispatchEvent(new CustomEvent('action', {detail: toggleListVisibility({callback: 'toggleSourceList'})}))
+	}); 
+
+	document.addEventListener('state.render', (e) => render());
+	document.addEventListener('state.toggleSourceList', (e) => toggleSourceList());
+	
+	function toggleSourceList() {
+		sourceListElement.classList.toggle('visible');
+	}
+	
+	function render() {
+		require([
+			'./js/Article', 
+			'./js/Source', 
+			'./js/Requester', 
+			'./js/DecoratedSource'
+		], 
+		function(articleModule, sourceModule, requesterModule, decoratedSourceModule) {
 			
 			const updateArticleUrl = () => {
 				return `https:\/\/newsapi.org\/v1\/articles?source=${newsSource}&apiKey=${API_KEY}`;
@@ -31,13 +61,8 @@ import './text.json';
 			const Source  = sourceModule.Source;
 			const DecoratedSource = decoratedSourceModule.DecoratedSource;
 			
-			const wrapper = document.querySelector('.wrapper'),
-				newsListElement = document.querySelector('.news-list'),
-				sourceListElement = document.querySelector('.source-list'),
-				articleTmplContent = document.querySelector('#SingleArticle').content,
-				navButtonElement = document.querySelector('.nav-button'),
-				requester = new Requester(),
-				strategyFactory = new StrategyFactory();
+			const requester = new Requester(),
+				  strategyFactory = new StrategyFactory();
 				
 			let newsSource = SOURCE_BY_DEFAULT,
 				articlesUrl = updateArticleUrl(),
@@ -46,12 +71,7 @@ import './text.json';
 				strategy = strategyFactory.create(strategyType),
 				activeListElement;
 				
-			setStrategy(strategy);
-			
-			navButtonElement.addEventListener('click', event => {
-				event.preventDefault();
-				sourceListElement.classList.toggle('visible');
-			})	
+			setStrategy(strategy);	
 
 			function setStrategy(topNews) {
 				topNewsObj = topNews;
@@ -124,7 +144,7 @@ import './text.json';
 			articlePromise.then(onNewsListLoaded, onError);
 			Promise.all([sourcePromise, articlePromise]).then(() => {	
 				wrapper.classList.remove('invisible');
-				document.querySelector('.get-news-btn').classList.add('invisible');
+				document.querySelector('.controls').classList.add('invisible');
 			});
 		});
-	}) 
+	}
