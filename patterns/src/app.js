@@ -3,8 +3,9 @@ import 'classlist-polyfill';
 import templatePolyfill from 'template-polyfill';
 import StrategyFactory from './js/strategies/StrategyFactory';
 
-import { loadData, toggleListVisibility } from './js/actions';
-import { store as state } from './js/store';
+import { activateButton } from './js/actions';
+import Store from './js/StoreNew';
+import { activateLoadButtonReducer } from './js/reducer';
 
 // Import styles
 import './styl/styles.styl';
@@ -25,23 +26,23 @@ import './styl/styles.styl';
 	worldImg.src = require('./assets/world.png');
 	document.body.insertBefore(worldImg,document.body.childNodes[0]);
 	
-	document.querySelector('button').addEventListener('click', (e) => {
-		document.dispatchEvent(new CustomEvent('action', { detail: loadData({
-			current: SOURCE_BY_DEFAULT,
-			callback: 'render'
-		})}));
+	let storeNew = new Store({
+		activateLoadButtonReducer
 	});
 	
-	navButtonElement.addEventListener('click', (e) => {
-		document.dispatchEvent(new CustomEvent('action', {detail: toggleListVisibility({callback: 'toggleSourceList'})}))
-	}); 
-
-	document.addEventListener('state.render', (e) => render());
-	document.addEventListener('state.toggleSourceList', (e) => toggleSourceList());
+	document.querySelector('button').addEventListener('click', (e) => {
+		storeNew.dispatch(activateButton(SOURCE_BY_DEFAULT));
+	});
 	
-	function toggleSourceList() {
+	storeNew.subscribe((state) => {
+		if (state.isActivated) {
+			render();
+		}
+	})
+	
+	navButtonElement.addEventListener('click', (e) => {
 		sourceListElement.classList.toggle('visible');
-	}
+	})
 	
 	function render() {
 		require([

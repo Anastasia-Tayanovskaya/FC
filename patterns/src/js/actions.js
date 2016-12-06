@@ -1,16 +1,7 @@
-export const LOAD_DATA = 'LOAD_DATA';
-export function loadData(obj) {
+export const ACTIVATE_BUTTON = 'ACTIVATE_BUTTON';
+export function activateButton(activeSource) {
 	return {
-		type: LOAD_DATA,
-		currentSource: obj.current,
-		callback: obj.callback
+		type: ACTIVATE_BUTTON,
+		currentSource: activeSource
 	};
-}
-
-export const TOGGLE_LIST = 'TOGGLE_LIST';
-export function toggleListVisibility(obj) {
-	return {
-		type: TOGGLE_LIST,
-		callback: obj.callback
-	}
 }

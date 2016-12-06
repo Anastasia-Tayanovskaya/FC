@@ -1,14 +1,12 @@
-import { LOAD_DATA, TOGGLE_LIST } from './actions';
+import { ACTIVATE_BUTTON, TOGGLE_LIST } from './actions';
 
-export function dataLoadReducer(state, action) {
+export function activateLoadButtonReducer(state, action) {
 	switch (action.type) {
-		case LOAD_DATA:
+		case ACTIVATE_BUTTON:
 			return Object.assign(state, {
-				isDataLoaded: true,
+				isActivated: true,
 				activeSource: action.currentSource
 			});
-		case TOGGLE_LIST:
-			return state;
 		default:
 			return state;
 	}
