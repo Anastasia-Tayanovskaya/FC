@@ -1,0 +1,8 @@
+{
+    "dbname": "heroku_4bqlmh1p",
+    "port": 19548,
+    "user": "admin",
+    "password": "admin",
+    "host": "ds119548.mlab.com",
+    "uploads": "public/uploads"
+}

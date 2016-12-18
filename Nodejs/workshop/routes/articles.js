@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var Article =  require('../schema/article.js');
-var path = require('path');
-var multer  = require('multer');
-//var upload = multer({ dest: path.join(__dirname, 'public/uploads') });
+let express = require('express');
+let router = express.Router();
+let Article =  require('../schema/article.js');
+let path = require('path');
+let multer  = require('multer');
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/uploads')
     },
@@ -13,7 +12,7 @@ var storage = multer.diskStorage({
         cb(null, Date.now() + file.originalname);
     }
 });
-var upload = multer({ storage: storage })
+let upload = multer({ storage: storage });
 
 /* GET home page. */
 
@@ -42,10 +41,6 @@ router.post('/add', upload.single('urlToImage'), function(req,res){
         if (err) return console.error(err);
         res.redirect('/articles');
     });
-    // console.log(req.body)
-    // console.log(req.file)
-    // console.log(req.files)
-    // res.json(req.body);
 });
 
 router.post('/delete', function(req, res){

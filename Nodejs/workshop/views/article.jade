@@ -1,20 +1,21 @@
 extends layout
 
 block content
-    a(href='/articles/add-new') Add new Article
-    each article in articleData
-        article.news
-            a.article-link(href= article.url )
-                header
-                h2.article-title #{article.title}
-                p
-                | Written by 
-                span.article-author #{article.author}
-                img(alt='', src=article.urlToImage)
-                span.article-published-date #{article.publishedAt}
-                p.article-description
-                | #{article.description}
-            form(action='/articles/delete', method='post')
-                input(type='hidden', name='base_id', value=article._id)
-                button(type='submit') Delete
-            a.update(href='/articles/update/' + article._id) Update article
+    div.wrapper
+        section.news-list
+            a.add-new-article(href='/articles/add-new') Add new Article
+            each article in articleData
+                article.news
+                    a.article-link(href= article.url )
+                        header
+                            h2.article-title #{article.title}
+                        p
+                            Written by 
+                            span.article-author #{article.author}
+                        img(alt='', src=article.urlToImage)
+                        span.article-published-date #{article.publishedAt}
+                        p.article-description #{article.description}
+                    form(action='/articles/delete', method='post')
+                        input(type='hidden', name='base_id', value=article._id)
+                        button(type='submit') Delete
+                    a.update(href='/articles/update/' + article._id) Update article

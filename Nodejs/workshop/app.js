@@ -12,8 +12,13 @@ var articles = require('./routes/articles');
 var stylus = require('stylus');
 var nib = require('nib');
 
+let nconf = require('nconf');
+nconf.use('file', { file: './config/config.json' });
+
 var multer  = require('multer');
-var upload = multer({ dest: path.join(__dirname, 'public/uploads') });
+var upload = multer({ dest: path.join(__dirname, nconf.get('uploads')) });
+
+
 
 var app = express();
 
@@ -30,16 +35,15 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(stylus.middleware(
-  { src: path.join(__dirname, 'public'),
-    compile: compile
-  }
-))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+app.use(stylus.middleware({
+    src: path.join(__dirname, 'public'),
+    compile: compile
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
