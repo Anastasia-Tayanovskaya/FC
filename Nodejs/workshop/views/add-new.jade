@@ -1,0 +1,18 @@
+form(action='/articles/add', method='post', enctype='multipart/form-data')
+  div
+    label Title
+    input(type='text', name='title')
+  div
+    label Author
+    input(type='text', name='author')
+  div
+    label Description
+    textarea(name='description')
+  div
+    label Url
+    input(type='text', name='url')
+  div
+    label Url To Image
+    input(type='file', name='urlToImage')
+  div
+    input(type='submit', value='Save', name='saveArticle')

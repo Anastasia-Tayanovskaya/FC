@@ -1,0 +1,19 @@
+form(action='/articles/update', method='post', enctype='multipart/form-data')
+  div
+    label Title
+    input(type='text', name='title', value=articleData.title)
+  div
+    label Author
+    input(type='text', name='author', value=articleData.author)
+  div
+    label Description
+    textarea(name='description', value=articleData.description)
+  div
+    label Url
+    input(type='text', name='url', value=articleData.url)
+  div
+    label Url To Image
+    input(type='file', name='urlToImage', value=articleData.urlToImage)
+  div
+    input(type='submit', value='Update', name='updateArticle')
+  input(type='hidden', value=id, name='articleId')
