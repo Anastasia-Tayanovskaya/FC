@@ -1,5 +1,4 @@
 let mongoose = require('mongoose'); 
-let dbconnection = require('./dbconnection.js'); 
 
 let Article = mongoose.model('Articles', {
     title: { type: String, required: true },

@@ -14,9 +14,15 @@ let storage = multer.diskStorage({
 });
 let upload = multer({ storage: storage });
 
-/* GET home page. */
+var isAuthenticated = function (req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+  }
+	res.redirect('/');
+}
 
-router.get('/', function(req, res, next) {
+
+router.get('/', isAuthenticated, function(req, res, next) {
   Article.find({}, (err, data) => {
     console.log(data);
     res.render('article', { articleData: data  });

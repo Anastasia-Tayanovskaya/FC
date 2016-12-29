@@ -1,0 +1,17 @@
+extends login-layout
+
+block content
+      div.container
+        h1.login-title Login
+        div.account-wall
+          form(class='form-signin', action='/login', method='POST')
+              div.input-wrapper
+                  input(type='text', name='username', placeholder='Email',required, autofocus)
+              div.input-wrapper
+                  input(type='password', name='password', placeholder='Password', required)
+              button(class='button', type='submit') Sign in
+              span.clearfix
+          a(href='/signup', class='new-account') Create an account
+          #message
+          if message
+            p.error-message #{message}

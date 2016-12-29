@@ -102,23 +102,41 @@ li
 	max-height: 450px;
 }
 
-.news {
-	margin-top: 15px;
-}
+.news
+	margin-top: 15px
 
-.news:first-child {
-	margin-top: 0;
-}
-
-.news .article-author{
-	font-weight: bold;
-}
+	&:first-child
+		margin-top: 0
+	.article-author
+		font-weight: bold
+	.update
+		margin-top: 15px
+		display: inline-block
+		text-decoration: underline
 
 footer {
 	height: 50px;
 	margin: 0 auto;
 	width: 860px;
 }
+
+.form-container
+	padding: 30px
+
+.update-form {
+	.element-wrapper {
+		margin-top: 20px
+		label {
+			width: 100px
+			display: inline-block
+			vertical-align: top
+		}
+
+		input[type='text'], textarea {
+			width: 250px
+		}
+	}
+} 
 
 @media only screen and (max-width : 860px) {
 	.wrapper {

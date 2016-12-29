@@ -11,7 +11,7 @@ let user =  nconf.get('user'),
 let mongodbUri = `mongodb:\/\/${user}:${password}@${host}:${port}\/${dbname}`;
  
 mongoose.connect(mongodbUri);
-let connection = mongoose.connection;             
+let connection = mongoose.connection;
  
 connection.on('error', console.error.bind(console, 'connection error:'));
 

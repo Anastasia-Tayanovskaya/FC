@@ -1,26 +1,30 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+let express = require('express');
+let path = require('path');
+let favicon = require('serve-favicon');
+let logger = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var articles = require('./routes/articles');
+let index = require('./routes/index');
+let users = require('./routes/users');
+let articles = require('./routes/articles');
 
-var stylus = require('stylus');
-var nib = require('nib');
+let stylus = require('stylus');
+let nib = require('nib');
 
 let nconf = require('nconf');
 nconf.use('file', { file: './config/config.json' });
 
-var multer  = require('multer');
-var upload = multer({ dest: path.join(__dirname, nconf.get('uploads')) });
 
+let dbconnection = require('./schema/dbconnection.js'); 
 
+let multer  = require('multer');
+let upload = multer({ dest: path.join(__dirname, nconf.get('uploads')) });
 
-var app = express();
+let passport = require('passport');
+let expressSession = require('express-session');
+
+let app = express();
 
 function compile(str, path) {
   return stylus(str)
@@ -46,13 +50,29 @@ app.use(stylus.middleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use(expressSession({secret: 'mySecretKey', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+let flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+let initPassport = require('./passport/init');
+initPassport(passport);
+
+let routes = require('./routes/index')(passport);
+app.use('/', routes);
+
+//app.use('/', index);
 app.use('/users', users);
 app.use('/articles', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

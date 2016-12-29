@@ -298,10 +298,30 @@ footer {
 .news .article-author {
   font-weight: bold;
 }
+.news .update {
+  margin-top: 15px;
+  display: inline-block;
+  text-decoration: underline;
+}
 footer {
   height: 50px;
   margin: 0 auto;
   width: 860px;
+}
+.form-container {
+  padding: 30px;
+}
+.update-form .element-wrapper {
+  margin-top: 20px;
+}
+.update-form .element-wrapper label {
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
+}
+.update-form .element-wrapper input[type='text'],
+.update-form .element-wrapper textarea {
+  width: 250px;
 }
 @media only screen and (max-width: 860px) {
   .wrapper {

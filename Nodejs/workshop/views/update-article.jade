@@ -1,19 +1,25 @@
-form(action='/articles/update', method='post', enctype='multipart/form-data')
-  div
-    label Title
-    input(type='text', name='title', value=articleData.title)
-  div
-    label Author
-    input(type='text', name='author', value=articleData.author)
-  div
-    label Description
-    textarea(name='description', value=articleData.description)
-  div
-    label Url
-    input(type='text', name='url', value=articleData.url)
-  div
-    label Url To Image
-    input(type='file', name='urlToImage', value=articleData.urlToImage)
-  div
-    input(type='submit', value='Update', name='updateArticle')
-  input(type='hidden', value=id, name='articleId')
+extends layout
+
+block content
+  div.form-container
+    h1 Update article
+
+    form(action='/articles/update', method='post', enctype='multipart/form-data' class='update-form')
+      div.element-wrapper
+        label Title
+        input(type='text', name='title', value=articleData.title)
+      div.element-wrapper
+        label Author
+        input(type='text', name='author', value=articleData.author)
+      div.element-wrapper
+        label Description
+        textarea(name='description') #{articleData.description}
+      div.element-wrapper
+        label Url
+        input(type='text', name='url', value=articleData.url)
+      div.element-wrapper
+        label Url To Image
+        input(type='file', name='urlToImage', value=articleData.urlToImage)
+      div.element-wrapper
+        input(type='submit', value='Update', name='updateArticle')
+      input(type='hidden', value=id, name='articleId')
