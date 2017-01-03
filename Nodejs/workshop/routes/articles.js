@@ -14,9 +14,15 @@ let storage = multer.diskStorage({
 });
 let upload = multer({ storage: storage });
 
-/* GET home page. */
+var isAuthenticated = function (req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+  }
+	res.redirect('/');
+}
 
-router.get('/', function(req, res, next) {
+
+router.get('/', isAuthenticated, function(req, res, next) {
   Article.find({}, (err, data) => {
     console.log(data);
     res.render('article', { articleData: data  });
@@ -51,9 +57,7 @@ router.post('/delete', function(req, res){
 })
 
 router.get('/update/:id', function(req, res){
-    console.log(req.params);
     Article.find({_id: req.params.id}, (err, data) => {
-        console.log(data);
        res.render('update-article', {articleData: data[0], id: req.params.id});
     })
 });
@@ -63,21 +67,32 @@ router.post('/update', upload.single('urlToImage'), function(req,res){
     console.log(req.body);
     let body = req.body,
         articleId = body.articleId,
-        query = { _id: articleId };
+        query = { _id: articleId },
+        updatedObj = {}, urlToImage;
+    
+    if (req.file && req.file.filename) {
+        urlToImage = 'uploads/' + req.file.filename;
+        updatedObj = {
+            title: body.title, 
+            description: body.description,
+            url: body.url,
+            urlToImage: urlToImage,
+            author: body.author
+        }
+    }
+    else {
+        updatedObj = {
+            title: body.title, 
+            description: body.description,
+            url: body.url,
+            author: body.author
+        }
+    }
 
-    Article.update(query, {
-        title: body.title, 
-        description: body.description,
-        url: body.url,
-        //urlToImage: 'uploads/' + req.file.filename,
-        author: body.author
-    }, {}, function (err, article) {
+    Article.update(query, updatedObj, {}, function (err, article) {
         if (err) return console.error(err);
         res.redirect('/articles');
     })
 });
-
-
-
 
 module.exports = router;
