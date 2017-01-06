@@ -3,7 +3,7 @@ extends layout
 block content
   div.form-container
     h1 Add new article
-    form(action='/articles/add', method='post', enctype='multipart/form-data', class='update-form')
+    form(action='/api/articles', method='post', enctype='multipart/form-data', class='update-form')
       div.element-wrapper
         label(for='title') Title
         input(type='text', name='title', id='title')
