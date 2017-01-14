@@ -3,7 +3,7 @@ extends layout
 block content
     div.wrapper
         section.news-list
-            a.add-new-article(href='/articles/add-new') Add new Article
+            a.add-new-article(href='/api/articles/add-new') Add new Article
             each article in articleData
                 article.news
                     a.article-link(href= article.url )

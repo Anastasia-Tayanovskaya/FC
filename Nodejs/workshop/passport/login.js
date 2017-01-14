@@ -1,6 +1,6 @@
-var LocalStrategy   = require('passport-local').Strategy;
-var User = require('../schema/user');
-var bCrypt = require('bcrypt-nodejs');
+let LocalStrategy   = require('passport-local').Strategy;
+let User = require('../schema/user');
+let bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport){
 

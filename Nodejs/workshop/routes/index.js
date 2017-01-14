@@ -11,7 +11,7 @@ let isAuthenticated = function (req, res, next) {
 module.exports = function(passport){
 
 	router.get('/', isAuthenticated, function(req, res) {
-		res.redirect('/articles');
+		res.redirect('/api/articles');
 	});
 
 	router.get('/login', function(req, res) {
@@ -19,7 +19,7 @@ module.exports = function(passport){
 	});
 
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/articles',
+		successRedirect: '/api/articles',
 		failureRedirect: '/',
 		failureFlash : true  
 	}));
@@ -29,7 +29,7 @@ module.exports = function(passport){
 	});
 
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/articles',
+		successRedirect: '/api/articles',
 		failureRedirect: '/signup',
 		failureFlash : true
 	}));

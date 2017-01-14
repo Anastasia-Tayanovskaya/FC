@@ -1,30 +1,29 @@
-let express = require('express');
-let path = require('path');
-let favicon = require('serve-favicon');
-let logger = require('morgan');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-let index = require('./routes/index');
-let users = require('./routes/users');
-let articles = require('./routes/articles');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const articles = require('./routes/articles');
 
-let stylus = require('stylus');
-let nib = require('nib');
+const stylus = require('stylus');
+const nib = require('nib');
 
-let nconf = require('nconf');
+const nconf = require('nconf');
 nconf.use('file', { file: './config/config.json' });
 
+const dbconnection = require('./schema/dbconnection.js');
 
-let dbconnection = require('./schema/dbconnection.js'); 
+const multer = require('multer');
+const upload = multer({ dest: path.join(__dirname, nconf.get('uploads')) });
 
-let multer  = require('multer');
-let upload = multer({ dest: path.join(__dirname, nconf.get('uploads')) });
+const passport = require('passport');
+const expressSession = require('express-session');
 
-let passport = require('passport');
-let expressSession = require('express-session');
-
-let app = express();
+const app = express();
 
 function compile(str, path) {
   return stylus(str)
@@ -68,7 +67,7 @@ app.use('/', routes);
 
 //app.use('/', index);
 app.use('/users', users);
-app.use('/articles', articles);
+app.use('/api/articles', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
