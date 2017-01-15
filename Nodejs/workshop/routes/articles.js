@@ -15,10 +15,11 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 let isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated()) {
+	//if (req.isAuthenticated()) {
+    if (true) {
 		return next();
-  }
-	res.redirect('/');
+    }
+	//res.redirect('/');
 }
 
 

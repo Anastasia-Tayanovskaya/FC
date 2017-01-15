@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -49,23 +50,25 @@ app.use(stylus.middleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(expressSession({secret: 'mySecretKey', resave: true, saveUninitialized: true}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(expressSession({secret: 'mySecretKey', resave: true, saveUninitialized: true}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
  // Using the flash middleware provided by connect-flash to store messages in session
  // and displaying in templates
-let flash = require('connect-flash');
-app.use(flash());
+// let flash = require('connect-flash');
+// app.use(flash());
 
-// Initialize Passport
-let initPassport = require('./passport/init');
-initPassport(passport);
+// // Initialize Passport
+// let initPassport = require('./passport/init');
+// initPassport(passport);
 
-let routes = require('./routes/index')(passport);
-app.use('/', routes);
+// let routes = require('./routes/index')(passport);
+// app.use('/', routes);
 
-//app.use('/', index);
+app.use(cors());
+
+app.use('/', index); // CLOSE AUTENTIFICATION
 app.use('/users', users);
 app.use('/api/articles', articles);
 
