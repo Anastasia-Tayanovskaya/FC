@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-
 class Article extends Component {
     render() {
         let imageUrl = this.props.post.urlToImage.includes('http') ? this.props.post.urlToImage : `http://localhost:3005/${this.props.post.urlToImage}`;

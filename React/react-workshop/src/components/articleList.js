@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Article from './article';
-import { fetchArticles } from '../actions';
+import { fetchArticles } from '../actions/articles.action';
 import { connect } from 'react-redux';
 
 
@@ -21,10 +21,11 @@ class ArticleList extends Component {
 
     render() {
         return (
-            <div>
+            
+            <div className="news-list"> 
                 {this.state.posts.map((post, i) =>
                         <Article key={post._id} post={post} />
-                )}
+                )} 
             </div>
         );
     }
@@ -38,6 +39,8 @@ export default connect(
     },
     (dispatch) => {
         return {
-            getArtciles: () => {return dispatch(fetchArticles())}
+            getArtciles: () => {
+                return dispatch(fetchArticles());
+            }
         }
 })(ArticleList);

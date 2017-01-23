@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { fetchSingleArticle } from '../actions/article.action';
+import { connect } from 'react-redux';
 
-export default class ArticleSingle extends Component {
+class ArticleSingle extends Component {
     constructor(props) {
         super(props);
         
@@ -10,13 +12,10 @@ export default class ArticleSingle extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3005/api/articles/${this.props.routeParams.id}`).then(r => r.json())
-            .then((data) => {
-                this.setState({singlePost: data});
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        this.props.getSingleArtcile(this.props.routeParams.id).then((response) => {
+            console.log(response.article)
+              this.setState({singlePost: response.article});
+        })
     }
 
     render() {
@@ -36,3 +35,17 @@ export default class ArticleSingle extends Component {
         );
     }
 }
+
+export default connect(
+    (state) => {
+        return {
+            currentArticle: state.currentArticle
+        }
+    },
+    (dispatch) => {
+        return {
+            getSingleArtcile: (id) => {
+                return dispatch(fetchSingleArticle(id));
+            }
+        }
+})(ArticleSingle);

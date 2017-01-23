@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './stylus/styles.css';
 import { Link } from 'react-router';
+import Logbar from './components/logbar';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
+    console.log(this.props);
+    const { dispatch, isAuthenticated, errorMessage } = this.props;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
         <div className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-          <Link to="/test">Test</Link>
+          <Logbar
+            isAuthenticated={isAuthenticated}
+            errorMessage={errorMessage}
+            dispatch={dispatch}
+          />
+          <Link to="/test">Test</Link> | 
           <Link to="/">Home Link</Link>
-          {this.props.children}
+          { isAuthenticated &&
+            <div>
+              {this.props.children}
+            </div>
+          }
         </div>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  console.log(state)
+  //const { quotes, auth } = state
+  const { authentication } = state
+  //const { quote, authenticated } = quotes
+  const { isAuthenticated, errorMessage } = authentication
+
+  return {
+   // quote,
+    //isSecretQuote: authenticated,
+    isAuthenticated,
+    errorMessage
+  }
+}
+
+export default connect(mapStateToProps)(App);

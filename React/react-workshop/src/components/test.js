@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { increment } from '../actions.js';
+import { increment } from '../actions/increment.action';
 
 class Test extends Component {
         click() {
