@@ -1,0 +1,21 @@
+extends login-layout
+
+block content
+    div.container
+        h1.login-title Registration Details
+        div.signup-wall
+            form(class='form-signin', action='/signup', method='POST')
+                div.input-wrapper
+                    input(type='text', name='username', placeholder='Username',required, autofocus)
+                div.input-wrapper
+                    input(type='password', name='password', placeholder='Password', required)
+                div.input-wrapper
+                    input(type='email', name='email', placeholder='Email',required)
+                div.input-wrapper
+                    input(type='text', name='firstName', placeholder='First Name',required)
+                div.input-wrapper
+                    input(type='text', name='lastName', placeholder='Last Name',required)
+                button(class='button', type='submit') Register
+            #message
+                if message
+                    p.error-message #{message}

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.form-container
+    h1 Add new article
+    form(action='/api/articles', method='post', enctype='multipart/form-data', class='update-form')
+      div.element-wrapper
+        label(for='title') Title
+        input(type='text', name='title', id='title')
+      div.element-wrapper
+        label Author
+        input(type='text', name='author')
+      div.element-wrapper
+        label Description
+        textarea(name='description')
+      div.element-wrapper
+        label Url
+        input(type='text', name='url')
+      div.element-wrapper
+        label Url To Image
+        input(type='file', name='urlToImage')
+      div.element-wrapper
+        input(type='submit', value='Save', name='saveArticle')

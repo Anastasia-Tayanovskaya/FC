@@ -1,0 +1,24 @@
+{
+  "name": "react-workshop",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "create-react-app-stylus": "^1.1.1",
+    "react-scripts": "0.8.5",
+    "redux-devtools": "^3.3.2"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts-with-stylus start src/stylus/styles.styl",
+    "build": "react-scripts-with-stylus build src/stylus/styles.styl",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
