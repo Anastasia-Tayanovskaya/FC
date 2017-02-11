@@ -1,0 +1,5 @@
+<ul class="pagination" ng-click="$ctrl.updateCurrentPageNumber($event)">
+	<li ng-repeat="i in $ctrl.arrayOfPageNumbers track by $index">
+		<a href="#" data-number="{{$index}}">{{$index + 1}}</a>
+	</li>
+</ul>

@@ -1,0 +1,64 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+
+.form-wrapper {
+  display: none;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+.errorMsg {
+  color: #f00;
+}
+
+.pagination > li {
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.pagination > li > a {
+  display: inline-block;
+  padding: 7px 10px;
+  border: 1px solid #444;
+  text-decoration: none;
+}
+
+.element-wrapper {
+  padding: 10px 0;
+}
+
+.element-wrapper label {
+  width: 100px;
+  display: inline-block;
+}
+
+.element-wrapper input[type=text], .element-wrapper textarea {
+  width: 250px;
+}
