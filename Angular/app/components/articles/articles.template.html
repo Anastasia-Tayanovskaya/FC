@@ -8,5 +8,5 @@
 			<a ng-href="#!/article/{{article._id}}/edit">{{article.title}}</a>
 		</li>
 	</ul>
-	<pagination on-add-todo="$ctrl.addTodo(page)" item-length="$ctrl.articles.length" items-per-page="3"></pagination>
+	<pagination on-set-range="$ctrl.setRange(page)" item-length="$ctrl.articles.length" items-per-page="3"></pagination>
 </div>

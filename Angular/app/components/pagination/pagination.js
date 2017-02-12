@@ -4,7 +4,7 @@ angular
 		bindings: {
 			itemLength: '<',
 			itemsPerPage: '<',
-			 onAddTodo: '&'
+			 onSetRange: '&'
 		},
 		templateUrl: 'components/pagination/pagination.template.html',
 		controller: [function paginationController() {
@@ -21,7 +21,7 @@ angular
 					targetLink = event.target;
 				}
 				currentPage = targetLink.attributes['data-number'].value;
-				self.onAddTodo({page: currentPage});
+				self.onSetRange({page: currentPage});
 			}
     
 			self.$onChanges = (changesObj) => {

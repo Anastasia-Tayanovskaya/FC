@@ -16,7 +16,7 @@ angular.
 				self.articlesToShow = PaginationService.getArticleRange(self.articles, currentPageNumber, itemsPerPage);
 			}
 
-			self.addTodo = (pageNumber) => {
+			self.setRange = (pageNumber) => {
 				currentPageNumber = pageNumber;
 				self.setArticleRange();
 			}
