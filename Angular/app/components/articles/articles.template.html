@@ -1,0 +1,12 @@
+<div>
+	<div>
+		<button ng-click="$ctrl.showForm()">Add new articles</button>
+	</div>
+	<p>Total amount of articles: {{$ctrl.articles.length}}</p>
+	<ul>
+		<li ng-repeat="article in $ctrl.articlesToShow">
+			<a ng-href="#!/article/{{article._id}}/edit">{{article.title}}</a>
+		</li>
+	</ul>
+	<pagination on-set-range="$ctrl.setRange(page)" item-length="$ctrl.articles.length" items-per-page="3"></pagination>
+</div>

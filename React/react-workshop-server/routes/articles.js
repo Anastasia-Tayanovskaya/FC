@@ -25,7 +25,7 @@ let isAuthenticated = function (req, res, next) {
 
 router.get('/', function(req, res, next) {
   Article.find({}, (err, articles) => {
-    if (err) { res.send(err); }
+    if (err) { res.send(err); return; }
     res.json(articles);
   })
 });
@@ -34,7 +34,7 @@ router.get('/add-new', function(req, res, next) {
   res.render('add-new', {});
 });
 
-router.post('/', upload.single('urlToImage'), function(req, res){
+router.post('/', upload.single('file'), function(req, res){
     console.log(req.body);
     let body = req.body,
         image = (req && req.file && req.file.filename) ? req.file.filename : 'no_image.png';
@@ -48,6 +48,7 @@ router.post('/', upload.single('urlToImage'), function(req, res){
     article.save(function (err, article) {
         if (err) {
             res.send(err);
+            return;
         }
         res.json({ message: 'Article created!' });
         //res.redirect('/api/articles');
@@ -58,6 +59,7 @@ router.get('/:article_id', isAuthenticated, function(req, res) {
     Article.findById(req.params.article_id, function(err, article) {
         if (err) {
             res.send(err);
+            return;
         }
         res.json(article);
     });
@@ -82,26 +84,28 @@ router.delete('/:article_id', function(req, res) {
         }, function(err, article) {
             if (err) {
                 res.send(err);
+                return;
             }
 
             res.json({ message: 'Successfully deleted' });
         });
     });
 
-router.put('/:article_id', upload.single('urlToImage'), function(req, res) {
+router.put('/:article_id', upload.single('file'), function(req, res) {
     let body = req.body,
         image = (req && req.file && req.file.filename) ? req.file.filename : 'no_image.png',
-        updatedArticle = new Article({
+        updatedArticle = {
             title: body.title, 
             description: body.description,
             url: body.url,
             urlToImage: 'uploads/' + image,
             author: body.author
-        });
+        };
 
     Article.update({ _id: req.params.article_id }, updatedArticle, {}, function (err, article) {
         if (err) {
             res.send(err);
+            return;
         }
         res.json({ message: 'Article updated!' });
     })
