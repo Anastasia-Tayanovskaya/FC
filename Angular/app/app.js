@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-let module = angular.module('angularWorkshop', [
+angular.module('angularWorkshop', [
   'ngRoute',
   'angularWorkshop.version',
   'angularWorkshop.articleList',

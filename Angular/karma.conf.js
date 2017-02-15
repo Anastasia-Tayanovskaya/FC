@@ -7,9 +7,18 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'components/**/*.js',
-      'view*/**/*.js'
+      'bower_components/angular-mocks/angular-mocks.js',  
+      'bower_components/ng-file-upload/ng-file-upload.js',
+      'app.js',
+      'services/pagination.service.js',
+      'directives/*.js',
+      'components/version/*.js',
+      'services/articles.service.js',
+      'components/pagination/*.js',
+      'components/articles/*.js',
+      'services/*.js'
+      //'components/**/*.js',
+      //'view*/**/*.js'
     ],
 
     autoWatch: true,

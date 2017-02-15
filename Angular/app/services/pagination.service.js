@@ -1,7 +1,7 @@
-module.factory('PaginationService', [ function() {
+angular.module('angularWorkshop').factory('PaginationService', [ function() {
 	let currentPageNumber = 0;
 
-	getArticleRange = (list, pageNumber, itemsPerPage) => {
+	let getArticleRange = (list, pageNumber, itemsPerPage) => {
 		if (pageNumber !== undefined) {
 			currentPageNumber = pageNumber;
 		}
@@ -10,7 +10,7 @@ module.factory('PaginationService', [ function() {
 			lastIndex = currentPageNumber * itemsPerPage + itemsPerPage;
 		
 		return list.filter((el, index) => (index >= startIndex && index < lastIndex));
-	}
+	};
 
 	return {
 		currentPageNumber,

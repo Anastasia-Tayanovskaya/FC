@@ -1,5 +1,5 @@
 //angular.module('myApp', [])
-module.factory('ArticleService', [ '$http', 'Upload', function($http, Upload) {
+angular.module('angularWorkshop').factory('ArticleService', [ '$http', 'Upload', function($http, Upload) {
 		let articles;
 
 		const ARTICLE_URL = 'http://localhost:3005/api/articles';
