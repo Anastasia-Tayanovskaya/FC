@@ -2,8 +2,7 @@
 
 describe('angularWorkshop.pagination module', function() {
 
-  let $componentController;
-	let suite = {}, element, scope, $compile, $rootScope;
+	let suite = {}, $compile;
 
 	module.sharedInjector();
 
@@ -11,13 +10,13 @@ describe('angularWorkshop.pagination module', function() {
   	beforeAll(module('angularWorkshop.pagination'));
 
 
-	beforeAll(inject(function(_$componentController_, _$rootScope_, _$compile_, $templateCache) {
+	beforeAll(inject(function(_$componentController_, _$rootScope_, _$compile_) {
 		suite.$componentController = _$componentController_;
 		suite.bindings = {onSetRange: function(){}, itemLength: 20, itemsPerPage: 3};
 		$compile = _$compile_;
-		$rootScope = _$rootScope_;
-
-		scope = $rootScope.$new();
+		suite.scope = _$rootScope_.$new();
+		suite.link = _$compile_('<a href="#" data-number="1">2</a>')(suite.scope);
+		suite.li = _$compile_('<li><a href="#" data-number="1">2</a></li>')(suite.scope);
 
 		spyOn(suite.bindings, 'onSetRange');
 	}));
@@ -37,4 +36,27 @@ describe('angularWorkshop.pagination module', function() {
 		controller.$onChanges({});
 		expect(controller.arrayOfPageNumbers.length).toEqual(7);
 	});
+
+	it('should update current page number clicking by link', function() {
+		
+		let controller = suite.$componentController('pagination', null, suite.bindings),
+			event = {
+				preventDefault: function() {},
+				target: suite.link[0]
+			};
+		controller.updateCurrentPageNumber(event);
+		expect(suite.bindings.onSetRange).toHaveBeenCalled();
+		expect(suite.bindings.onSetRange).toHaveBeenCalledWith({page: '1'});
+	})
+
+	it('should update current page number clicking by link', function() {
+		
+		let controller = suite.$componentController('pagination', null, suite.bindings),
+			event = {
+				preventDefault: function() {},
+				target: suite.li[0]
+			};
+		controller.updateCurrentPageNumber(event);
+		expect(suite.bindings.onSetRange).toHaveBeenCalled();
+	})
 });
